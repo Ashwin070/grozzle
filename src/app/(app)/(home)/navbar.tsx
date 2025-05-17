@@ -9,10 +9,12 @@ import { NavbarSidebar } from "./navbar-sidebar";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["700"],
-});
+import localFont from "next/font/local"
+
+const oriole = localFont({
+  src: "../fonts/Oriole-Bold.woff2"
+})
+
 
 interface NavbarItemProps {
   href: string;
@@ -50,8 +52,8 @@ export const Navbar = () => {
   return (
     <nav className="h-20 flex border-b border-b-gray-500 justify-between font-medium bg-black text-white">
       <Link href="/" className="pl-6 flex items-center">
-        <span className={cn("text-5xl font-semibold mb-3", poppins.className)}>
-          grozzle
+        <span className={cn("text-5xl tracking-wide", oriole.className)}>
+          Grozzle
         </span>
       </Link>
 
