@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Category } from "@/payload-types";
 import { useRef, useState } from "react";
 import { useDropdownPosition } from "./use-dropdown-position";
 import { SubCategoryMenu } from "./sub-category-menu";
+import { CustomCategory } from "../types";
+import Link from "next/link";
 
 interface Props {
-  category: Category;
+  category: CustomCategory;
   isActive?: boolean;
   isNavigationHovered?: boolean;
 }
@@ -29,23 +30,32 @@ export const CategoryDropdown = ({
 
   const onMouseLeave = () => setIsOpen(false);
 
-  const dropdownPosition = getDropdownPosition();
+  const toggleDropdown = () => {
+    if (category.subcategories.docs?.length) {
+      setIsOpen(!open);
+    }
+  };
   return (
     <div
       className="relative"
       ref={dropdownRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={toggleDropdown}
     >
       <div className="relative">
         <Button
           variant="elevated"
           className={cn(
-            "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-black hover:border-primary text-white",
-            isActive && !isNavigationHovered && "bg-black border-primary"
+            "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-black hover:border-gray-500 text-white",
+            isActive && !isNavigationHovered && "bg-black border-gray-500",
+            isOpen &&
+              "bg-black border-gray-500 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] text-white -translate-x-[4px] -translate-y-[4px]"
           )}
         >
-          {category.name}
+          <Link href={`/${category.slug === "all" ? "" : category.slug}`}>
+            {category.name}
+          </Link>
         </Button>
         {category.subcategories && category.subcategories.length > 0 && (
           <div
@@ -56,10 +66,7 @@ export const CategoryDropdown = ({
           />
         )}
       </div>
-      <SubCategoryMenu
-        category={category}
-        isOpen={isOpen}
-      />
+      <SubCategoryMenu category={category} isOpen={isOpen} />
     </div>
   );
 };

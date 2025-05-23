@@ -41,7 +41,7 @@ export const NavbarSidebar = ({ items, open, onOpenChange }: Props) => {
               {item.children}
             </Link>
           ))}
-          <div className="border-t ">
+          <div className="border-t border-gray-500">
             <Link
               href="/sign-in"
               className="w-full text-left p-4 hover:bg-white hover:text-black flex items-center text-base font-medium text-white"
