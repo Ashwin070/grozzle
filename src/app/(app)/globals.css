@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.sheet-content[data-subcategory-open="true"] button[aria-label="Close"] svg {
+  color: black;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
