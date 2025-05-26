@@ -79,14 +79,14 @@ export const Navbar = () => {
           variant="secondary"
           className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-black text-white hover:bg-white transition-colors text-lg hover:text-black border-l-gray-500"
         >
-          <Link href="/sign-in">Log in</Link>
+          <Link prefetch href="/sign-in">Log in</Link>
         </Button>
         <Button
           asChild
           variant="secondary"
           className="border-l-0 border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-pink-400 text-black hover:bg-white transition-colors text-lg hover:text-black"
         >
-          <Link href="/sign-up">Start selling</Link>
+          <Link prefetch href="/sign-up">Start selling</Link>
         </Button>
       </div>
       <div className="flex lg:hidden items-center justify-center">
